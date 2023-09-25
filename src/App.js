@@ -1,25 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+
+import PokemonsInfo from './components/PokemonsInfo';
+import Header from './components/Header';
+import Searchbar from './components/Searchbar';
+import Paging from './components/Paging';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/');
+	const [nextUrl, setNextUrl] = useState(null);
+	const [prevUrl, setPrevUrl] = useState(null);
+
+	const handleNextPage = newUrl => {
+		setUrl(newUrl);
+	};
+
+	return (
+		<div>
+			<Header />
+			<Searchbar />
+			<PokemonsInfo url={url} setNextUrl={setNextUrl} />
+			<Paging nextUrl={nextUrl} handleNextPage={handleNextPage} />
+		</div>
+	);
 }
 
 export default App;

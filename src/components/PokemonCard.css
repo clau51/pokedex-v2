@@ -1,0 +1,14 @@
+.pokemon-cards {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.pokemon-img {
+	padding: 30px;
+	width: 250px;
+	height: 250px;
+}
+
+.card {
+	margin: 20px;
+}

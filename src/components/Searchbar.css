@@ -1,0 +1,23 @@
+.searchbar {
+	display: flex;
+	justify-content: center;
+}
+
+input {
+	border-radius: 20px;
+	padding: 5px;
+}
+
+.label {
+	display: flex;
+}
+
+.label div {
+	display: flex;
+	align-items: center;
+	margin: 5px;
+}
+
+.button {
+	margin: 5px;
+}
