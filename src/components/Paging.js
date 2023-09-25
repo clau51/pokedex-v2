@@ -2,8 +2,39 @@ import './Paging.css';
 import Pagination from 'react-bootstrap/Pagination';
 import PokemonsInfo from './PokemonsInfo';
 
-function Paging({ nextUrl, prevUrl, handlePaging }) {
+import { useState } from 'react';
+
+function Paging({ nextUrl, prevUrl, firstUrl, handlePaging }) {
 	//pass the nextUrl as a url={nextUrl} to PokemonsInfo
+
+	const [count, setCount] = useState(1);
+	const [activePage, setActivePage] = useState(1);
+
+	const handleNextClick = () => {
+		nextPage();
+		setActivePage(prev => {
+			return prev + 1;
+		});
+		handleNextPageCount();
+	};
+
+	const handlePrevClick = () => {
+		prevPage();
+		setActivePage(prev => {
+			return prev - 1;
+		});
+		handlePrevPageCount();
+	};
+
+	const handleFirstClick = () => {
+		handlePaging(firstUrl);
+		setActivePage(page => {
+			return page - count + 1;
+		});
+		setCount(page => {
+			return page - count + 1;
+		});
+	};
 
 	const nextPage = () => {
 		handlePaging(nextUrl);
@@ -13,27 +44,33 @@ function Paging({ nextUrl, prevUrl, handlePaging }) {
 		handlePaging(prevUrl);
 	};
 
+	const handleNextPageCount = () => {
+		setCount(prevCount => {
+			return prevCount + 1;
+		});
+	};
+
+	const handlePrevPageCount = () => {
+		setCount(prevCount => {
+			return prevCount - 1;
+		});
+	};
+
 	return (
 		<Pagination>
-			<Pagination.First />
+			{count === 1 ? (
+				<Pagination.First disabled />
+			) : (
+				<Pagination.First onClick={handleFirstClick} />
+			)}
 			{prevUrl ? (
-				<Pagination.Prev onClick={prevPage} />
+				<Pagination.Prev onClick={handlePrevClick} />
 			) : (
 				<Pagination.Prev disabled />
 			)}
-			<Pagination.Item>{1}</Pagination.Item>
-			<Pagination.Ellipsis />
-
-			<Pagination.Item>{10}</Pagination.Item>
-			<Pagination.Item>{11}</Pagination.Item>
-			<Pagination.Item active>{12}</Pagination.Item>
-			<Pagination.Item>{13}</Pagination.Item>
-			<Pagination.Item disabled>{14}</Pagination.Item>
-
-			<Pagination.Ellipsis />
-			<Pagination.Item>{20}</Pagination.Item>
+			<Pagination.Item active={activePage === 1}>{count}</Pagination.Item>
 			{nextUrl ? (
-				<Pagination.Next onClick={nextPage} />
+				<Pagination.Next onClick={handleNextClick} />
 			) : (
 				<Pagination.Next disabled />
 			)}
@@ -43,3 +80,11 @@ function Paging({ nextUrl, prevUrl, handlePaging }) {
 }
 
 export default Paging;
+
+/* <Pagination.Item active={activePage === 2}>{2}</Pagination.Item>
+<Pagination.Item active={activePage === 3}>{3}</Pagination.Item>
+<Pagination.Item active={activePage === 4}>{4}</Pagination.Item>
+<Pagination.Item active={activePage === 5}>{5}</Pagination.Item>
+<Pagination.Item active={activePage === 6}>{6}</Pagination.Item>
+<Pagination.Item active={activePage === 7}>{7}</Pagination.Item>
+<Pagination.Item active={activePage === 8}>{8}</Pagination.Item> */

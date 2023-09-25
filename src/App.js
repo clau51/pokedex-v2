@@ -8,7 +8,8 @@ import Searchbar from './components/Searchbar';
 import Paging from './components/Paging';
 
 function App() {
-	const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/');
+	const firstUrl = 'https://pokeapi.co/api/v2/pokemon/';
+	const [url, setUrl] = useState(firstUrl);
 	const [nextUrl, setNextUrl] = useState(null);
 	const [prevUrl, setPrevUrl] = useState(null);
 
@@ -21,7 +22,12 @@ function App() {
 			<Header />
 			<Searchbar />
 			<PokemonsInfo url={url} setNextUrl={setNextUrl} setPrevUrl={setPrevUrl} />
-			<Paging nextUrl={nextUrl} prevUrl={prevUrl} handlePaging={handlePaging} />
+			<Paging
+				nextUrl={nextUrl}
+				prevUrl={prevUrl}
+				firstUrl={firstUrl}
+				handlePaging={handlePaging}
+			/>
 		</div>
 	);
 }
