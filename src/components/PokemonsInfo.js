@@ -3,10 +3,9 @@ import load from './pokemons';
 import PokemonCard from './PokemonCard';
 import './PokemonCard.css';
 
-function PokemonsInfo({ url, setNextUrl }) {
+function PokemonsInfo({ url, setNextUrl, setPrevUrl }) {
 	const [pokemons, setPokemons] = useState(null);
 	const [pokemonsInfo, setPokemonsInfo] = useState(null);
-	const [nextPage, setNextPage] = useState(null);
 
 	useEffect(() => {
 		console.log(url);
@@ -14,6 +13,7 @@ function PokemonsInfo({ url, setNextUrl }) {
 			.then(data => {
 				setPokemons(data.results);
 				setNextUrl(data.next);
+				setPrevUrl(data.previous);
 				return data.results;
 			})
 			.then(data => {
@@ -29,7 +29,7 @@ function PokemonsInfo({ url, setNextUrl }) {
 					})
 					.catch(() => console.log('error'));
 			});
-	}, [url, setNextUrl]);
+	}, [url, setNextUrl, setPrevUrl]);
 
 	if (!pokemons || !pokemonsInfo) {
 		return <p>Yet to be rendered......</p>;

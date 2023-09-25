@@ -12,7 +12,7 @@ function App() {
 	const [nextUrl, setNextUrl] = useState(null);
 	const [prevUrl, setPrevUrl] = useState(null);
 
-	const handleNextPage = newUrl => {
+	const handlePaging = newUrl => {
 		setUrl(newUrl);
 	};
 
@@ -20,8 +20,8 @@ function App() {
 		<div>
 			<Header />
 			<Searchbar />
-			<PokemonsInfo url={url} setNextUrl={setNextUrl} />
-			<Paging nextUrl={nextUrl} handleNextPage={handleNextPage} />
+			<PokemonsInfo url={url} setNextUrl={setNextUrl} setPrevUrl={setPrevUrl} />
+			<Paging nextUrl={nextUrl} prevUrl={prevUrl} handlePaging={handlePaging} />
 		</div>
 	);
 }

@@ -14,7 +14,7 @@ function PokemonCard({ pokemonInfo }) {
 				src={pokemonInfo.sprites.other.dream_world.front_default}
 			/>
 			<Card.Body className="pokemon-body">
-				<Card.Title>{pokemonInfo.name}</Card.Title>
+				<Card.Title>{`#${pokemonInfo.id}: ${pokemonInfo.name}`}</Card.Title>
 				<ul>{pokemonTypes}</ul>
 				<Button variant="primary">Go somewhere</Button>
 			</Card.Body>
