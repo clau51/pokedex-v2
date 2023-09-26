@@ -1,6 +1,43 @@
 .pokemon-cards {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.card {
+	justify-content: center;
+	align-items: center;
+	border-radius: 0.25rem;
+	box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
+	background-color: white;
+	cursor: pointer;
+	margin: 20px;
+	transform: rotateY(var(--rotate-y, 0)) translateY(var(--translate-y, 0));
+	transform-style: preserve-3d;
+	transition: 400ms;
+}
+
+.card:hover {
+	box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+	--translate-y: -2px;
+}
+
+.card-flip {
+	--rotate-y: 180deg;
+}
+
+.card .back {
+	transform: rotateY(180deg);
+}
+
+.card .front,
+.card .back {
+	padding: 1rem;
+	backface-visibility: hidden;
+}
+
+.card .back {
+	position: absolute;
 }
 
 .pokemon-img {
@@ -9,42 +46,67 @@
 	height: 250px;
 }
 
-.card {
-	margin: 20px;
-}
-
-.card {
+.pokemon-types {
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	position: relative;
-	border-radius: 0.25rem;
-	box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
-	background-color: white;
-	height: 500px;
-	width: 500px;
-	transform: rotateY(var(--rotate-y, 0)) translateY(var(--translate-y, 0));
-	transform-style: preserve-3d;
-	transition: perspective(1000px);
-	cursor: pointer;
 }
 
-.card:hover {
-	--translate-y: -2px;
-	box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+.pokemon-name {
+	display: flex;
+	justify-content: center;
 }
 
-.card-flip {
-	--rotate-y: 180deg;
+#type-grass,
+#type-normal,
+#type-fire,
+#type-water,
+#type-flying,
+#type-fighting,
+#type-poison,
+#type-electric,
+#type-ground,
+#type-rock,
+#type-psychic,
+#type-ice,
+#type-bug,
+#type-ghost,
+#type-steel,
+#type-dragon,
+#type-dark,
+#type-fairy {
+	border-radius: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin: 5px;
 }
 
-.card .front,
-.card .back {
-	/* position: absolute; */
-	padding: 1rem;
-	backface-visibility: hidden;
+#type-normal {
+	background-color: azure;
 }
 
-.card .back {
-	transform: rotateY(180deg);
+#type-grass,
+#type-bug {
+	background-color: lightgreen;
+}
+
+#type-water {
+	background-color: skyblue;
+}
+
+#type-fire {
+	background-color: lightcoral;
+}
+
+#type-poison {
+	background-color: rgb(251, 180, 251);
+}
+
+#type-flying {
+	background-color: lightgray;
+}
+
+#type-rock {
+	background-color: burlywood;
 }

@@ -6,7 +6,7 @@ function PokemonCard({ pokemonInfo }) {
 	const [flip, setFlip] = useState(false);
 
 	let pokemonTypes = pokemonInfo.types.map(type => {
-		return <li id={`type-${type.type.name}`}>{type.type.name}</li>;
+		return <p id={`type-${type.type.name}`}>{type.type.name}</p>;
 	});
 
 	let flipAction = () => {
@@ -16,7 +16,7 @@ function PokemonCard({ pokemonInfo }) {
 	return (
 		<Card
 			style={{ width: '18rem' }}
-			className={`card ${flip ? 'card-flip' : ''}`}
+			className={`card${flip ? '-flip' : ''}`}
 			onClick={flipAction}
 		>
 			<div className="front">
@@ -26,14 +26,14 @@ function PokemonCard({ pokemonInfo }) {
 					src={pokemonInfo.sprites.other.dream_world.front_default}
 				/>
 				<Card.Body className="pokemon-body">
-					<Card.Title>{`#${pokemonInfo.id}: ${pokemonInfo.name}`}</Card.Title>
-					<ul>{pokemonTypes}</ul>
-					<Button variant="primary">Learn More</Button>
+					<Card.Title className="pokemon-name">{`#${pokemonInfo.id}: ${pokemonInfo.name}`}</Card.Title>
+					<div className="pokemon-types">{pokemonTypes}</div>
+					{/* <Button variant="primary">Learn More</Button> */}
 				</Card.Body>
 			</div>
 
 			<div className="back">
-				<p>Back of card stuff</p>
+				<p>Hello world!</p>
 			</div>
 		</Card>
 	);
