@@ -14,7 +14,7 @@ function App() {
 	const [pokemons, setPokemons] = useState(null);
 	const [pokemonsInfo, setPokemonsInfo] = useState(null);
 	const [foundPokemon, setFoundPokemon] = useState(null);
-	const [errMessage, setErrMessage] = useState('');
+	// const [errMessage, setErrMessage] = useState('');
 
 	useEffect(() => {
 		console.log(url);
@@ -38,7 +38,7 @@ function App() {
 					})
 					.catch(() => console.log('error'));
 			});
-	}, [url, setNextUrl, setPrevUrl]);
+	}, [url]);
 
 	if (!pokemons || !pokemonsInfo) {
 		return <p>Yet to be rendered......</p>;

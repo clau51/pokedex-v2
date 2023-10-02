@@ -56,15 +56,20 @@ function PokemonCard({ pokemonInfo }) {
 
 			<div className="back">
 				<div className="pokemon-id">
-					Pokémon ID No. {String(pokemonInfo.id).padStart(4, '0')}
+					<strong>Pokémon ID No.</strong>{' '}
+					{String(pokemonInfo.id).padStart(4, '0')}
 				</div>
 				<div className="pokemon-weight">
-					Weight: {convertHectogramsToLbs(pokemonInfo.weight)} lbs
+					<strong>Weight:</strong> {convertHectogramsToLbs(pokemonInfo.weight)}{' '}
+					lbs
 				</div>
 				<div className="pokemon-height">
-					Height: {convertDecimetersToFeet(pokemonInfo.height)} feet
+					<strong>Height:</strong> {convertDecimetersToFeet(pokemonInfo.height)}{' '}
+					feet
 				</div>
-				<p>Abilities: {pokemonAbilities.join(', ')}</p>
+				<div className="pokemon-abilities">
+					<strong>Abilities:</strong> {pokemonAbilities.join(', ')}
+				</div>
 
 				<Button variant="primary">Click to see evolutions</Button>
 			</div>

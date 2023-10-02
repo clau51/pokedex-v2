@@ -79,11 +79,3 @@ function Paging({ nextUrl, prevUrl, firstUrl, handlePaging }) {
 }
 
 export default Paging;
-
-/* <Pagination.Item active={activePage === 2}>{2}</Pagination.Item>
-<Pagination.Item active={activePage === 3}>{3}</Pagination.Item>
-<Pagination.Item active={activePage === 4}>{4}</Pagination.Item>
-<Pagination.Item active={activePage === 5}>{5}</Pagination.Item>
-<Pagination.Item active={activePage === 6}>{6}</Pagination.Item>
-<Pagination.Item active={activePage === 7}>{7}</Pagination.Item>
-<Pagination.Item active={activePage === 8}>{8}</Pagination.Item> */
