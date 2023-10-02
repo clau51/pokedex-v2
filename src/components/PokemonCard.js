@@ -11,7 +11,7 @@ function PokemonCard({ pokemonInfo }) {
 	});
 
 	let pokemonAbilities = pokemonInfo.abilities.map(ability => {
-		return <p>{ability.ability.name}</p>;
+		return ability.ability.name;
 	});
 
 	console.log(pokemonAbilities);
@@ -59,12 +59,12 @@ function PokemonCard({ pokemonInfo }) {
 					Pokémon ID No. {String(pokemonInfo.id).padStart(4, '0')}
 				</div>
 				<div className="pokemon-weight">
-					Weight: {convertHectogramsToLbs(pokemonInfo.weight)}
+					Weight: {convertHectogramsToLbs(pokemonInfo.weight)} lbs
 				</div>
 				<div className="pokemon-height">
-					Height: {convertDecimetersToFeet(pokemonInfo.height)}
+					Height: {convertDecimetersToFeet(pokemonInfo.height)} feet
 				</div>
-				<p>Abilities: {pokemonAbilities}</p>
+				<p>Abilities: {pokemonAbilities.join(', ')}</p>
 
 				<Button variant="primary">Click to see evolutions</Button>
 			</div>

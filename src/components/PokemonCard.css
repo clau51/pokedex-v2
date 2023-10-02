@@ -28,6 +28,8 @@
 
 .card .back {
 	transform: rotateY(180deg);
+	background-color: lightblue;
+	border-radius: 15px;
 }
 
 .card .front,
