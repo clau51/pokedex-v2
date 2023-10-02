@@ -58,7 +58,11 @@ function App() {
 			<div className="pokemon-cards">
 				{foundPokemon === null ? (
 					pokemonsInfo.map(pokemonInfo => (
-						<PokemonCard key={pokemonInfo.id} pokemonInfo={pokemonInfo} />
+						<PokemonCard
+							key={pokemonInfo.id}
+							pokemonInfo={pokemonInfo}
+							// errorMessage={errorMessage}
+						/>
 					))
 				) : (
 					<PokemonCard pokemonInfo={foundPokemon} />

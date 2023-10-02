@@ -1,20 +1,27 @@
 import './Searchbar.css';
 import { useState } from 'react';
-import PokemonCard from './PokemonCard';
 
 function Searchbar({ firstUrl, setFoundPokemon }) {
 	const [searchQuery, setSearchQuery] = useState('');
 
 	function findPokemon() {
-		return fetch(`${firstUrl}${searchQuery.toLowerCase()}`)
-			.then(res => res.json())
-			.then(data => {
-				data ? setFoundPokemon(data) : setFoundPokemon(null);
-				console.log(data);
-			})
-			.catch(e => {
-				console.log(e);
-			});
+		if (searchQuery !== '') {
+			return fetch(`${firstUrl}${searchQuery.toLowerCase()}`)
+				.then(res => res.json())
+				.then(data => {
+					if (data) {
+						setFoundPokemon(data);
+					} else {
+						setFoundPokemon(null);
+						// setErrorMessage(
+						// 	`Error! ${searchQuery} does not exist in our database`
+						// );
+					}
+				})
+				.catch(e => {
+					console.log(e);
+				});
+		}
 	}
 
 	const handleChange = e => {
@@ -23,7 +30,7 @@ function Searchbar({ firstUrl, setFoundPokemon }) {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		findPokemon().then(console.log('clicked submit'));
+		findPokemon();
 	};
 
 	return (
@@ -44,6 +51,7 @@ function Searchbar({ firstUrl, setFoundPokemon }) {
 				<button className="button" onClick={handleSubmit}>
 					Submit
 				</button>
+				<button className="button">Clear</button>
 			</div>
 		</form>
 	);
