@@ -2,17 +2,20 @@ import './Searchbar.css';
 import { useState } from 'react';
 import PokemonCard from './PokemonCard';
 
-function Searchbar({ pokemonsInfo, setFoundPokemon }) {
+function Searchbar({ firstUrl, setFoundPokemon }) {
 	const [searchQuery, setSearchQuery] = useState('');
 
-	const findPokemon = () => {
-		const found = pokemonsInfo.find(pokemon =>
-			pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
-		);
-		found ? setFoundPokemon(found) : setFoundPokemon(null);
-
-		console.log(found);
-	};
+	function findPokemon() {
+		return fetch(`${firstUrl}${searchQuery.toLowerCase()}`)
+			.then(res => res.json())
+			.then(data => {
+				data ? setFoundPokemon(data) : setFoundPokemon(null);
+				console.log(data);
+			})
+			.catch(e => {
+				console.log(e);
+			});
+	}
 
 	const handleChange = e => {
 		setSearchQuery(e.target.value);
@@ -20,8 +23,7 @@ function Searchbar({ pokemonsInfo, setFoundPokemon }) {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		findPokemon();
-		console.log('clicked submit');
+		findPokemon().then(console.log('clicked submit'));
 	};
 
 	return (
@@ -43,7 +45,6 @@ function Searchbar({ pokemonsInfo, setFoundPokemon }) {
 					Submit
 				</button>
 			</div>
-			{/* {foundPokemon ? <PokemonCard pokemonInfo={foundPokemon} /> : <p>lol</p>} */}
 		</form>
 	);
 }

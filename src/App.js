@@ -51,10 +51,7 @@ function App() {
 		<div>
 			<Header />
 			{pokemonsInfo ? (
-				<Searchbar
-					pokemonsInfo={pokemonsInfo}
-					setFoundPokemon={setFoundPokemon}
-				/>
+				<Searchbar firstUrl={firstUrl} setFoundPokemon={setFoundPokemon} />
 			) : (
 				<p>Loading...</p>
 			)}
