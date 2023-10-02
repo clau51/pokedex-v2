@@ -14,6 +14,7 @@ function App() {
 	const [pokemons, setPokemons] = useState(null);
 	const [pokemonsInfo, setPokemonsInfo] = useState(null);
 	const [foundPokemon, setFoundPokemon] = useState(null);
+	const [errMessage, setErrMessage] = useState('');
 
 	useEffect(() => {
 		console.log(url);
@@ -51,18 +52,18 @@ function App() {
 		<div>
 			<Header />
 			{pokemonsInfo ? (
-				<Searchbar firstUrl={firstUrl} setFoundPokemon={setFoundPokemon} />
+				<Searchbar
+					firstUrl={firstUrl}
+					setFoundPokemon={setFoundPokemon}
+					// setErrMessage={setErrMessage}
+				/>
 			) : (
 				<p>Loading...</p>
 			)}
 			<div className="pokemon-cards">
 				{foundPokemon === null ? (
 					pokemonsInfo.map(pokemonInfo => (
-						<PokemonCard
-							key={pokemonInfo.id}
-							pokemonInfo={pokemonInfo}
-							// errorMessage={errorMessage}
-						/>
+						<PokemonCard key={pokemonInfo.id} pokemonInfo={pokemonInfo} />
 					))
 				) : (
 					<PokemonCard pokemonInfo={foundPokemon} />

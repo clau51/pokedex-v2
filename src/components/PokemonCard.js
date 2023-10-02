@@ -14,6 +14,10 @@ function PokemonCard({ pokemonInfo }) {
 		setFlip(!flip);
 	};
 
+	// if (errMessage !== '') {
+	// 	return <p>{errMessage}</p>;
+	// }
+
 	return (
 		<Card
 			style={{ width: '18rem' }}

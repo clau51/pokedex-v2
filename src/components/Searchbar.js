@@ -7,15 +7,20 @@ function Searchbar({ firstUrl, setFoundPokemon }) {
 	function findPokemon() {
 		if (searchQuery !== '') {
 			return fetch(`${firstUrl}${searchQuery.toLowerCase()}`)
-				.then(res => res.json())
+				.then(res => {
+					if (!res.ok) {
+						setFoundPokemon(null);
+						// setErrMessage(
+						// 	`Error! ${searchQuery} does not exist in our database`
+						// );
+						throw new Error('invalid url');
+					} else {
+						return res.json();
+					}
+				})
 				.then(data => {
 					if (data) {
 						setFoundPokemon(data);
-					} else {
-						setFoundPokemon(null);
-						// setErrorMessage(
-						// 	`Error! ${searchQuery} does not exist in our database`
-						// );
 					}
 				})
 				.catch(e => {
