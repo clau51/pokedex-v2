@@ -1,6 +1,9 @@
 import './Searchbar.css';
+import { useState } from 'react';
 
 function Searchbar() {
+	const [searchQuery, setSearchQuery] = useState('');
+
 	return (
 		<form>
 			<div className="searchbar">
@@ -10,7 +13,9 @@ function Searchbar() {
 						<input
 							id="search-bar"
 							type="text"
-							name="name" //value
+							name="name"
+							value={searchQuery}
+							oneChange={e => setSearchQuery(e.target.value)}
 						/>
 					</div>
 				</label>
