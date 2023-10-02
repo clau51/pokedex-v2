@@ -10,19 +10,37 @@ function PokemonCard({ pokemonInfo }) {
 		return <p id={`type-${type.type.name}`}>{type.type.name}</p>;
 	});
 
+	let pokemonAbilities = pokemonInfo.abilities.map(ability => {
+		return <p>{ability.ability.name}</p>;
+	});
+
+	console.log(pokemonAbilities);
+
 	let flipAction = () => {
 		setFlip(!flip);
 	};
 
-	// if (errMessage !== '') {
-	// 	return <p>{errMessage}</p>;
-	// }
+	let handleCardClick = e => {
+		if (e.target.tagName === 'BUTTON') {
+			console.log('button Clicked');
+		} else {
+			flipAction();
+		}
+	};
+
+	function convertHectogramsToLbs(hectogram) {
+		return (hectogram * 0.2204622622).toFixed(2);
+	}
+
+	function convertDecimetersToFeet(decimeters) {
+		return (decimeters * 0.3280839895).toFixed(2);
+	}
 
 	return (
 		<Card
 			style={{ width: '18rem' }}
 			className={`card${flip ? '-flip' : ''}`}
-			onClick={flipAction}
+			onClick={handleCardClick}
 		>
 			<div className="front">
 				<Card.Img
@@ -33,12 +51,22 @@ function PokemonCard({ pokemonInfo }) {
 				<Card.Body className="pokemon-body">
 					<Card.Title className="pokemon-name">{`#${pokemonInfo.id}: ${pokemonInfo.name}`}</Card.Title>
 					<div className="pokemon-types">{pokemonTypes}</div>
-					{/* <Button variant="primary">Learn More</Button> */}
 				</Card.Body>
 			</div>
 
 			<div className="back">
-				<p>Hello world!</p>
+				<div className="pokemon-id">
+					Pokémon ID No. {String(pokemonInfo.id).padStart(4, '0')}
+				</div>
+				<div className="pokemon-weight">
+					Weight: {convertHectogramsToLbs(pokemonInfo.weight)}
+				</div>
+				<div className="pokemon-height">
+					Height: {convertDecimetersToFeet(pokemonInfo.height)}
+				</div>
+				<p>Abilities: {pokemonAbilities}</p>
+
+				<Button variant="primary">Click to see evolutions</Button>
 			</div>
 		</Card>
 	);
