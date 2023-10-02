@@ -1,8 +1,28 @@
 import './Searchbar.css';
 import { useState } from 'react';
+import PokemonCard from './PokemonCard';
 
-function Searchbar() {
+function Searchbar({ pokemonsInfo, setFoundPokemon }) {
 	const [searchQuery, setSearchQuery] = useState('');
+
+	const findPokemon = () => {
+		const found = pokemonsInfo.find(pokemon =>
+			pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
+		);
+		found ? setFoundPokemon(found) : setFoundPokemon(null);
+
+		console.log(found);
+	};
+
+	const handleChange = e => {
+		setSearchQuery(e.target.value);
+	};
+
+	const handleSubmit = e => {
+		e.preventDefault();
+		findPokemon();
+		console.log('clicked submit');
+	};
 
 	return (
 		<form>
@@ -15,12 +35,15 @@ function Searchbar() {
 							type="text"
 							name="name"
 							value={searchQuery}
-							oneChange={e => setSearchQuery(e.target.value)}
+							onChange={handleChange}
 						/>
 					</div>
 				</label>
-				<button className="button">Submit</button>
+				<button className="button" onClick={handleSubmit}>
+					Submit
+				</button>
 			</div>
+			{/* {foundPokemon ? <PokemonCard pokemonInfo={foundPokemon} /> : <p>lol</p>} */}
 		</form>
 	);
 }

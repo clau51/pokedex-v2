@@ -13,6 +13,7 @@ function App() {
 	const [prevUrl, setPrevUrl] = useState(null);
 	const [pokemons, setPokemons] = useState(null);
 	const [pokemonsInfo, setPokemonsInfo] = useState(null);
+	const [foundPokemon, setFoundPokemon] = useState(null);
 
 	useEffect(() => {
 		console.log(url);
@@ -49,12 +50,24 @@ function App() {
 	return (
 		<div>
 			<Header />
-			<Searchbar />
+			{pokemonsInfo ? (
+				<Searchbar
+					pokemonsInfo={pokemonsInfo}
+					setFoundPokemon={setFoundPokemon}
+				/>
+			) : (
+				<p>Loading...</p>
+			)}
 			<div className="pokemon-cards">
-				{pokemonsInfo.map(pokemonInfo => (
-					<PokemonCard key={pokemonInfo.id} pokemonInfo={pokemonInfo} />
-				))}
+				{foundPokemon === null ? (
+					pokemonsInfo.map(pokemonInfo => (
+						<PokemonCard key={pokemonInfo.id} pokemonInfo={pokemonInfo} />
+					))
+				) : (
+					<PokemonCard pokemonInfo={foundPokemon} />
+				)}
 			</div>
+
 			<Paging
 				nextUrl={nextUrl}
 				prevUrl={prevUrl}
