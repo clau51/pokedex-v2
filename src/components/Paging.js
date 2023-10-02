@@ -1,6 +1,5 @@
 import './Paging.css';
 import Pagination from 'react-bootstrap/Pagination';
-import PokemonsInfo from './PokemonsInfo';
 
 import { useState } from 'react';
 

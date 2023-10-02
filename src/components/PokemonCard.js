@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useState } from 'react';
+import './PokemonCard.css';
 
 function PokemonCard({ pokemonInfo }) {
 	const [flip, setFlip] = useState(false);

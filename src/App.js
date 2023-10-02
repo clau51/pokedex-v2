@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import PokemonsInfo from './components/PokemonsInfo';
 import Header from './components/Header';
 import Searchbar from './components/Searchbar';
 import Paging from './components/Paging';
@@ -51,7 +50,6 @@ function App() {
 		<div>
 			<Header />
 			<Searchbar />
-			{/* <PokemonsInfo url={url} setNextUrl={setNextUrl} setPrevUrl={setPrevUrl} /> */}
 			<div className="pokemon-cards">
 				{pokemonsInfo.map(pokemonInfo => (
 					<PokemonCard key={pokemonInfo.id} pokemonInfo={pokemonInfo} />
