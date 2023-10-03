@@ -46,7 +46,11 @@ function PokemonCard({ pokemonInfo }) {
 				<Card.Img
 					className="pokemon-img"
 					variant="top"
-					src={pokemonInfo.sprites.other.dream_world.front_default}
+					src={
+						pokemonInfo.sprites.other.dream_world.front_default
+							? pokemonInfo.sprites.other.dream_world.front_default
+							: pokemonInfo.sprites.other['official-artwork'].front_default
+					}
 				/>
 				<Card.Body className="pokemon-body">
 					<Card.Title className="pokemon-name">{`#${pokemonInfo.id}: ${pokemonInfo.name}`}</Card.Title>
@@ -56,8 +60,7 @@ function PokemonCard({ pokemonInfo }) {
 
 			<div className="back">
 				<div className="pokemon-id">
-					<strong>Pokémon ID No.</strong>{' '}
-					{String(pokemonInfo.id).padStart(4, '0')}
+					<strong>Pokémon ID No.</strong> {pokemonInfo.id}
 				</div>
 				<div className="pokemon-weight">
 					<strong>Weight:</strong> {convertHectogramsToLbs(pokemonInfo.weight)}{' '}
