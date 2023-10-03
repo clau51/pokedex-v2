@@ -4,41 +4,32 @@ import Pagination from 'react-bootstrap/Pagination';
 import { useState } from 'react';
 
 function Paging({ nextUrl, prevUrl, firstUrl, handlePaging }) {
-	const [count, setCount] = useState(1);
-	const [activePage, setActivePage] = useState(1);
+	const [pageCount, setPageCount] = useState(1);
 
 	const handleNextButton = () => {
 		handlePaging(nextUrl);
-		handleNextPageCount();
-	};
-
-	const handlePrevButton = () => {
-		handlePaging(prevUrl);
-		handlePrevPageCount();
-	};
-
-	const handleFirstButton = () => {
-		handlePaging(firstUrl);
-		setCount(page => {
-			return page - count + 1;
-		});
-	};
-
-	const handleNextPageCount = () => {
-		setCount(prevCount => {
+		setPageCount(prevCount => {
 			return prevCount + 1;
 		});
 	};
 
-	const handlePrevPageCount = () => {
-		setCount(prevCount => {
+	const handlePrevButton = () => {
+		handlePaging(prevUrl);
+		setPageCount(prevCount => {
 			return prevCount - 1;
+		});
+	};
+
+	const handleFirstButton = () => {
+		handlePaging(firstUrl);
+		setPageCount(page => {
+			return page - pageCount + 1;
 		});
 	};
 
 	return (
 		<Pagination>
-			{count === 1 ? (
+			{pageCount === 1 ? (
 				<Pagination.First disabled />
 			) : (
 				<Pagination.First onClick={handleFirstButton} />
@@ -48,7 +39,7 @@ function Paging({ nextUrl, prevUrl, firstUrl, handlePaging }) {
 			) : (
 				<Pagination.Prev disabled />
 			)}
-			<Pagination.Item active={count === 1}>{count}</Pagination.Item>
+			<Pagination.Item active={pageCount === 1}>{pageCount}</Pagination.Item>
 			{nextUrl ? (
 				<Pagination.Next onClick={handleNextButton} />
 			) : (
