@@ -4,43 +4,24 @@ import Pagination from 'react-bootstrap/Pagination';
 import { useState } from 'react';
 
 function Paging({ nextUrl, prevUrl, firstUrl, handlePaging }) {
-	//pass the nextUrl as a url={nextUrl} to PokemonsInfo
-
 	const [count, setCount] = useState(1);
 	const [activePage, setActivePage] = useState(1);
 
-	const handleNextClick = () => {
-		nextPage();
-		setActivePage(prev => {
-			return prev + 1;
-		});
+	const handleNextButton = () => {
+		handlePaging(nextUrl);
 		handleNextPageCount();
 	};
 
-	const handlePrevClick = () => {
-		prevPage();
-		setActivePage(prev => {
-			return prev - 1;
-		});
+	const handlePrevButton = () => {
+		handlePaging(prevUrl);
 		handlePrevPageCount();
 	};
 
-	const handleFirstClick = () => {
+	const handleFirstButton = () => {
 		handlePaging(firstUrl);
-		setActivePage(page => {
-			return page - count + 1;
-		});
 		setCount(page => {
 			return page - count + 1;
 		});
-	};
-
-	const nextPage = () => {
-		handlePaging(nextUrl);
-	};
-
-	const prevPage = () => {
-		handlePaging(prevUrl);
 	};
 
 	const handleNextPageCount = () => {
@@ -60,16 +41,16 @@ function Paging({ nextUrl, prevUrl, firstUrl, handlePaging }) {
 			{count === 1 ? (
 				<Pagination.First disabled />
 			) : (
-				<Pagination.First onClick={handleFirstClick} />
+				<Pagination.First onClick={handleFirstButton} />
 			)}
 			{prevUrl ? (
-				<Pagination.Prev onClick={handlePrevClick} />
+				<Pagination.Prev onClick={handlePrevButton} />
 			) : (
 				<Pagination.Prev disabled />
 			)}
-			<Pagination.Item active={activePage === 1}>{count}</Pagination.Item>
+			<Pagination.Item active={count === 1}>{count}</Pagination.Item>
 			{nextUrl ? (
-				<Pagination.Next onClick={handleNextClick} />
+				<Pagination.Next onClick={handleNextButton} />
 			) : (
 				<Pagination.Next disabled />
 			)}
